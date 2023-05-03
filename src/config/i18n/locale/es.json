@@ -1,3 +1,7 @@
 {
-    "main.welcome": "Bienvenido a la app de catálogo de restaurantes"
+    "main.welcome": "Bienvenido a la app de catálogo de restaurantes",
+
+    "languageSelector.language": "Idioma",
+    "languageSelector.english": "Inglés",
+    "languageSelector.spanish": "Español"
 }

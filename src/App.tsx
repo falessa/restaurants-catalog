@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { useTranslation } from 'react-i18next';
 import './config/i18n/i18n'
+import { LanguageSelector } from './components/LanguageSelector/languageSelector';
 
 function App() {
   const { t } = useTranslation();
@@ -14,6 +15,7 @@ function App() {
         <p>
           {t("main.welcome")}
         </p>
+        <LanguageSelector />
         <a
           className="App-link"
           href="https://reactjs.org"
