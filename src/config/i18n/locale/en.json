@@ -2,7 +2,7 @@
     "main.welcome": "Welcome to the restaurant catalog app",
 
     "languageSelector.language": "Language",
-    "languageSelector.english": "English",
-    "languageSelector.spanish": "Spanish"
+    "languageSelector.en": "English",
+    "languageSelector.es": "Spanish"
 
 }

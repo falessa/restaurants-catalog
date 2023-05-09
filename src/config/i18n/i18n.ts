@@ -19,5 +19,11 @@ i18next
         es: {
             translation: esTranslations
         }
-    }
+    },
+    parseMissingKeyHandler: (missing) => {
+        console.log('Missing: ' + missing)
+        const lang = missing[0].split('-')[0];
+        
+        return lang;
+    },
 }); 
