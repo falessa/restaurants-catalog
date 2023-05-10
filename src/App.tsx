@@ -1,11 +1,12 @@
 import React from 'react';
-// import logo from './logo.svg';
-import { ThemeProvider, CssBaseline } from '@mui/material'
+import { Box, ThemeProvider, CssBaseline } from '@mui/material'
 import { myTheme } from './theme/myTheme';
-// import './App.css';
 import { useTranslation } from 'react-i18next';
 import './config/i18n/i18n'
 import { Header } from './components/Header/header';
+import background from './resources/images/background.jpg';
+import { Image } from 'mui-image';
+
 
 function App() {
   const { t } = useTranslation();
@@ -13,7 +14,15 @@ function App() {
   return (
     <ThemeProvider theme={myTheme}>
       <CssBaseline />
-          <Header />
+      <Box
+        // sx={{
+        //   background: `url(${background})`,
+        //   height: '600px',
+        // }}
+      > 
+        <Header />
+        <Image src={background} height="530px" width="100%" />
+      </Box>
     </ThemeProvider>
   );
 }

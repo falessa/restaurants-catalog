@@ -16,8 +16,8 @@ export const Header: FC = () => {
         >
             <Image 
                 src={avocadoHeart}
-                height='200px'
-                width='200px'
+                height='100px'
+                width='100px'
                 alt='restaurant-catalog-logo'
             />
             <LanguageSelector />
