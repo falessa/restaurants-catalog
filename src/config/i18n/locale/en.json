@@ -1,8 +1,11 @@
 {
-    "main.welcome": "Welcome to the restaurant catalog app",
+    "main.title": "Find your new favorite place",
 
     "languageSelector.language": "Language",
     "languageSelector.en": "English",
-    "languageSelector.es": "Spanish"
+    "languageSelector.es": "Spanish",
+
+    "searchInput.searchTerm": "Pizza, hamburger, ramen, etc.",
+    "searchInput.city": "City"
 
 }

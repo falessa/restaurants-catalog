@@ -1,7 +1,10 @@
 {
-    "main.welcome": "Bienvenido a la app de catálogo de restaurantes",
+    "main.title": "Encuentra tu nuevo lugar favorito",
 
     "languageSelector.language": "Idioma",
     "languageSelector.en": "Inglés",
-    "languageSelector.es": "Español"
+    "languageSelector.es": "Español",
+
+    "searchInput.searchTerm": "Pizza, hamburguesa, ramen, etc.",
+    "searchInput.city": "Ciudad"
 }

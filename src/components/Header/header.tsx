@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 import { Image } from 'mui-image';
 import { LanguageSelector } from '../LanguageSelector/languageSelector';
 
-export const Header: FC = () => {
+export const Header: FC = (): ReactElement => {
     return(
         <Box 
             display='flex'
