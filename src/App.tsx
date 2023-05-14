@@ -3,10 +3,11 @@ import { Box, ThemeProvider, CssBaseline, Typography } from '@mui/material'
 import { myTheme } from './theme/myTheme';
 import { useTranslation } from 'react-i18next';
 import './config/i18n/i18n'
+import background from './resources/images/background.jpg';
 import { Header } from './components/Header/header';
 import { SearchInput } from './components/SearchInput/searchInput';
-import background from './resources/images/background.jpg';
 import { Image } from 'mui-image';
+import { BusinessGrid } from './components/BusinessesGrid/businessesGrid';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           </Typography>
           <SearchInput />
         </Box>
+        <BusinessGrid />
 
       </Box>
     </ThemeProvider>

@@ -6,5 +6,7 @@
     "languageSelector.es": "Español",
 
     "searchInput.searchTerm": "Pizza, hamburguesa, ramen, etc.",
-    "searchInput.city": "Ciudad"
+    "searchInput.city": "Ciudad",
+
+    "businessesGrid.title": "Algunos lugares encantadores en Barcelona"
 }

@@ -6,6 +6,7 @@
     "languageSelector.es": "Spanish",
 
     "searchInput.searchTerm": "Pizza, hamburger, ramen, etc.",
-    "searchInput.city": "City"
+    "searchInput.city": "City",
 
+    "businessesGrid.title": "Some lovely places in Barcelona"
 }
