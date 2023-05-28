@@ -4,13 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ApolloClient, InMemoryCache, HttpLink, ApolloProvider, ApolloLink } from "@apollo/client";
-import dotenv from "dotenv";
-
-// dotenv.config();
 
 const authLink = new ApolloLink((operation, forward) => {
-  // TODO: get token from .env file
-  const token = "tokenIsSecret!";
+  const token = process.env.REACT_APP_API_TOKEN;
   operation.setContext({
     headers: {
       "Authorization": `Bearer ${token}`
@@ -24,7 +20,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: ApolloLink.from([
     authLink,
-    new HttpLink({ uri: "http://localhost:3001/graphql" })]) // // TODO: get uri from .env file
+    new HttpLink({ uri: process.env.REACT_APP_API_URL })])
 });
 
 const root = ReactDOM.createRoot(
