@@ -1,8 +1,33 @@
 import React, { FC, ReactElement } from 'react';
 import { Box, Typography} from '@mui/material';
 import { Image } from 'mui-image';
+export type Maybe<T> = T | null | undefined;
+export type Scalars = {
+    ID: { input: string | number; output: string; }
+    String: { input: string; output: string; }
+    Boolean: { input: boolean; output: boolean; }
+    Int: { input: number; output: number; }
+    Float: { input: number; output: number; }
+    GenericScalar: { input: any; output: any; }
+  };
 
-export const BusinessCardPreview: FC = (): ReactElement => {
+interface IBusinessCardPreview {
+    name: Maybe<string>;
+    rating: Maybe<number>;
+    formattedAddress: Maybe<string>;
+    // photos: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+    photo: string;
+}
+
+export const BusinessCardPreview: FC<IBusinessCardPreview> = (props): ReactElement => {
+    // destructure props
+    const {
+        name, 
+        rating,
+        formattedAddress,
+        photo
+    } = props;
+
     const styles = {
         businessCardPreviewTitle: {
             // TODO
@@ -22,7 +47,7 @@ export const BusinessCardPreview: FC = (): ReactElement => {
         <Box>
             <Box sx={styles.businessCardPreviewImage}>
                 <Image 
-                    src="https://s3-media2.fl.yelpcdn.com/bphoto/gJ78UUoWz4xB03kI5lKglA/o.jpg"
+                    src={photo}
                     height='200px'
                     width='200px'
                     alt='business-card-preview'
@@ -30,19 +55,19 @@ export const BusinessCardPreview: FC = (): ReactElement => {
                 />
             </Box>
             <Typography fontSize={16} fontFamily={"Helvetica Neue"} fontWeight={600}>
-                {"Bar Eixample"}
+                {name}
             </Typography>
             <Typography
                 sx={styles.businessCardPreviewSubtitle}
                 variant="body1" fontFamily={"Helvetica Neue"}
             >
-                {"C/ de Còrsega, 219"}
+                {formattedAddress}
             </Typography>
             <Typography
                 sx={styles.businessCardPreviewSubtitle}
                 variant="body1" fontFamily={"Helvetica Neue"}
             >
-                {"Rating 4.2/5"}
+                {rating}
             </Typography>
         </Box>
     )

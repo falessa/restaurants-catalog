@@ -9,7 +9,6 @@ import { SearchInput } from './components/SearchInput/searchInput';
 import { Image } from 'mui-image';
 import { BusinessGrid } from './components/BusinessesGrid/businessesGrid';
 
-
 function App() {
   const { t } = useTranslation();
 
@@ -35,7 +34,7 @@ function App() {
           </Typography>
           <SearchInput />
         </Box>
-        <BusinessGrid />
+        <BusinessGrid term="cocktails" location="Barcelona" />
 
       </Box>
     </ThemeProvider>
