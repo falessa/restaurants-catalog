@@ -1,0 +1,7 @@
+schema: "./schema.json" # GraphQL types (input file)
+generates:
+  src/generated/graphql.tsx: # Typescript types (output generated file)
+    plugins: # List of needed plugins (installed as devDeps)
+      - "typescript"
+      -  "typescript-react-apollo"
+      - "typescript-operations"
