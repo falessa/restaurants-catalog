@@ -12,8 +12,12 @@ const GET_BUSINESSES = gql`
             rating
             photos
             location {
+                address1
+                postal_code
                 formatted_address
+                city
             }
+            review_count
         }
     }
 `;
@@ -72,12 +76,7 @@ export const BusinessGrid: FC<IBusinessGrid> = (props): ReactElement => {
           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
             {data?.searchBusinesses.map((business, index) => (
               <Grid item xs={4} key={index}>
-                <BusinessCardPreview
-                  name={business.name}
-                  rating={business.rating}
-                  formattedAddress={business.location?.formatted_address}
-                  photo={business.photos?.[0] || ''}
-                />
+                <BusinessCardPreview businessData={business} />
               </Grid>
             ))}
           </Grid>
