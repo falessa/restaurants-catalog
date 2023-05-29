@@ -203,7 +203,7 @@ export type Location = {
   /** ISO 3166-2 (with a few exceptions) state code of this business. */
   state?: Maybe<Scalars['String']['output']>;
   /** Zip code of this business. */
-  zip_code?: Maybe<Scalars['String']['output']>;
+  postal_code?: Maybe<Scalars['String']['output']>;
 };
 
 export type OpenHours = {
