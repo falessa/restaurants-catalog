@@ -3,9 +3,20 @@ import { useTranslation } from 'react-i18next'
 import { Box, IconButton } from '@mui/material';
 import { TextInputCustom } from '../TextInputCustom/textInputCustom';
 import Search from '@mui/icons-material/Search';
+import { useNavigate } from 'react-router-dom';
 
-export const SearchInput: FC = (): ReactElement => {
+interface ISearchInput {
+    handleClick?: Function;
+}
+
+export const SearchInput: FC<ISearchInput> = (props): ReactElement => {
     const { t } = useTranslation();
+    const navigate = useNavigate();
+
+    //destructure props
+    const { 
+        handleClick = () => navigate("/search")
+     } = props;
 
     const styles = {
         searchBox: {
@@ -28,7 +39,7 @@ export const SearchInput: FC = (): ReactElement => {
         <Box sx={styles.searchBox}>
             <TextInputCustom placeholder={t("searchInput.searchTerm") || ""}/>
             <TextInputCustom placeholder={t("searchInput.city") || ""}/>
-            <IconButton sx={styles.searchIconButton} size="large">
+            <IconButton sx={styles.searchIconButton} size="large" onClick={() => handleClick()}>
                 <Search sx={styles.icon} />
             </IconButton>
         </Box>
