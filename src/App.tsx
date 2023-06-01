@@ -4,7 +4,6 @@ import { myTheme } from './theme/myTheme';
 import { useTranslation } from 'react-i18next';
 import './config/i18n/i18n'
 import background from './resources/images/background.jpg';
-import { Header } from './components/Header/header';
 import { SearchInput } from './components/SearchInput/searchInput';
 import { Image } from 'mui-image';
 import { BusinessGrid } from './components/BusinessesGrid/businessesGrid';
@@ -26,7 +25,6 @@ function App() {
     <ThemeProvider theme={myTheme}>
       <CssBaseline />
       <Box> 
-        <Header />
         <Image src={background} height="530px" width="100%" />
         <Box sx={styles.mainSearchBox}>
           <Typography variant="h3" color="white" mb={5} fontFamily={"Helvetica Neue"} fontWeight={700}>
