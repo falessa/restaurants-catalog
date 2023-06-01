@@ -39,7 +39,8 @@ export const LanguageSelector: FC<ILanguageSelector> = (props): ReactElement => 
 
     return(
         <Box
-            width='20%'
+            data-test="app-language-selector"
+            width='100%'
             border='none'
             sx={{
                 ".MuiOutlinedInput-notchedOutline": { // deletes the border from the Language Select component
