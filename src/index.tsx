@@ -7,6 +7,7 @@ import { Header } from './components/Header/header';
 import reportWebVitals from './reportWebVitals';
 import { ApolloClient, InMemoryCache, HttpLink, ApolloProvider, ApolloLink } from "@apollo/client";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { SearchContextProvider } from './context/SearchContext';
 
 const authLink = new ApolloLink((operation, forward) => {
   const token = process.env.REACT_APP_API_TOKEN;
@@ -32,13 +33,15 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<App />}/>
-          <Route path="/search" element={<Search />} />
-        </Routes>
-      </BrowserRouter>
+      <SearchContextProvider>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<App />}/>
+            <Route path="/search" element={<Search />} />
+          </Routes>
+        </BrowserRouter>
+      </SearchContextProvider>
     </ApolloProvider>
   </React.StrictMode>
 );
