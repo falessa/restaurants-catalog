@@ -1,17 +1,28 @@
-import React from 'react';
-import { Box, ThemeProvider } from '@mui/material'
+import React, { useContext } from 'react';
+import { Box, Typography, ThemeProvider } from '@mui/material'
 import { myTheme } from './theme/myTheme';
 import { useTranslation } from 'react-i18next';
 import './config/i18n/i18n';
+import { BusinessMainDetailsCard } from './components/BusinessMainDetailsCard/businessMainDetailsCard';
+import { SearchContext } from './context/SearchContext';
 
 function Search() {
     const { t } = useTranslation();
+    const { term, city } = useContext(SearchContext)
+
+
+    const styles = {
+        businessDetailsCard: {
+
+        }
+    }
     
     return (
         <ThemeProvider theme={myTheme}>
-            <Box>
-                {t("main.title")}
-            </Box>
+            <Typography>
+                {`You're looking for ${term} in ${city}`}
+            </Typography>
+            <BusinessMainDetailsCard />
         </ThemeProvider>
     );
 }
