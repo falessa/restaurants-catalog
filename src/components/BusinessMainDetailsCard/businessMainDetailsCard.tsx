@@ -1,4 +1,5 @@
 import React, { FC, ReactElement } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Box, Chip, Typography, Rating} from '@mui/material';
 import { Image } from 'mui-image';
 import { Business } from '../../generated/graphql';
@@ -10,6 +11,7 @@ interface IBusinessMainDetailsCard {
 }
 
 export const BusinessMainDetailsCard: FC<IBusinessMainDetailsCard> = (props): ReactElement => {
+    const { t } = useTranslation();
     // destructure props
     const {
         businessData
@@ -81,27 +83,29 @@ export const BusinessMainDetailsCard: FC<IBusinessMainDetailsCard> = (props): Re
         <Box sx={styles.businessMainDetailsCardContainer}>
             <Box>
                 <Image 
-                    src={"https://s3-media4.fl.yelpcdn.com/bphoto/UEdmb9VygVE5paSau66VCg/o.jpg"}
-                    height='200px'
-                    width='200px'
+                    src={businessData?.photos?.[0] || notFoundImage || ""}
+                    height='220px'
+                    width='220px'
                     alt='business-card-preview'
                     duration={0}
                 />
             </Box>
             <Box sx={styles.businessMainDetailsAtRight}>
                 <Typography sx={styles.businessMainDetailsName}>
-                    Business name
+                    {businessData?.name}
                 </Typography>
 
                 <Box sx={styles.businessMainDetailsPriceAddressBox}>
                     <Chip size="small" label="$$"/>
                     <Typography sx={styles.businessMainDetailsAddressText}>
-                        Carrer d'Aribau, 86 08036
+                        {businessData?.location?.address1 + ` ` + businessData?.location?.postal_code}
                     </Typography>
                 </Box>
 
-                <Typography sx={styles.businessMainDetailsIsOpen}>
-                    Open
+                <Typography
+                    sx={businessData?.hours?.[0]?.is_open_now ? styles.businessMainDetailsIsOpen : styles.businessMainDetailsIsClosed}
+                >
+                    {businessData?.hours?.[0]?.is_open_now ? t("businessDetail.open") : t("businessDetail.closed")}
                 </Typography>
 
                 <Box sx={{display: "block"}}>
@@ -117,9 +121,9 @@ export const BusinessMainDetailsCard: FC<IBusinessMainDetailsCard> = (props): Re
                 </Box>
 
                 <Box sx={styles.businessMainDetailsRatingBox}>
-                    <Rating name="business-rating" readOnly precision={0.1} value={4} />
+                    <Rating name="business-rating" readOnly precision={0.1} value={businessData?.rating} />
                     <Typography sx={styles.businessMainDetailsRatingNumber }>
-                        4 (352) reviews
+                        {businessData?.rating} ({businessData?.review_count || 0} reviews)
                     </Typography>
                 </Box>
             </Box>

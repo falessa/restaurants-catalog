@@ -13,17 +13,20 @@ const styles = {
 
 interface ITextInputCustom {
     placeholder?: string
+    onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> ) => void;
 }
   
 export const TextInputCustom: FC<ITextInputCustom> = (props): ReactElement => {
     const {
-        placeholder = "some placeholder"
+        placeholder = "some placeholder",
+        onChange = () => {}
     } = props;
 
     return(
         <TextField
             InputProps={{ sx: styles.common}}
             placeholder={placeholder}
+            onChange={onChange}
         />
     )
 }

@@ -12,8 +12,8 @@ export const SearchContext = createContext(
 );
 
 export const SearchContextProvider: FC<PropsWithChildren> = (props): ReactElement => {
-    const [term, setTerm] = useState("cocktails"); // TODO: initialize blank, just hardcoding for testing purposes
-    const [city, setCity] = useState("barcelona"); // TODO: initialize blank, just hardcoding for testing purposes
+    const [term, setTerm] = useState(""); // TODO: initialize blank, just hardcoding for testing purposes
+    const [city, setCity] = useState(""); // TODO: initialize blank, just hardcoding for testing purposes
 
     const setSearchTerm = (searchTerm: string) => {
         setTerm(searchTerm);
@@ -30,7 +30,9 @@ export const SearchContextProvider: FC<PropsWithChildren> = (props): ReactElemen
         setCity: setSearchCity
     }
 
-    return <SearchContext.Provider value={{  ...searchContextValues }}>
-        {props.children}
-    </SearchContext.Provider>
+    return(
+        <SearchContext.Provider value={{  ...searchContextValues }}>
+            {props.children}
+        </SearchContext.Provider>
+    )
 }
