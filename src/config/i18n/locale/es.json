@@ -8,5 +8,8 @@
     "searchInput.searchTerm": "Pizza, hamburguesa, ramen, etc.",
     "searchInput.city": "Ciudad",
 
-    "businessesGrid.title": "Algunos lugares encantadores en Barcelona"
+    "businessesGrid.title": "Algunos lugares encantadores en Barcelona",
+
+    "businessDetail.open": "Abierto",
+    "businessDetail.closed": "Cerrado"
 }
