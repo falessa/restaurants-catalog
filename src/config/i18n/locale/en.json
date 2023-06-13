@@ -8,5 +8,8 @@
     "searchInput.searchTerm": "Pizza, hamburger, ramen, etc.",
     "searchInput.city": "City",
 
-    "businessesGrid.title": "Some lovely places in Barcelona"
+    "businessesGrid.title": "Some lovely places in Barcelona",
+
+    "businessDetail.open": "Open",
+    "businessDetail.closed": "Closed"
 }

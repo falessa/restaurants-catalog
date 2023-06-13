@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { Box, Typography, ThemeProvider } from '@mui/material'
+import { Typography, ThemeProvider } from '@mui/material'
 import { myTheme } from './theme/myTheme';
 import { useTranslation } from 'react-i18next';
 import './config/i18n/i18n';
-import { BusinessMainDetailsCard } from './components/BusinessMainDetailsCard/businessMainDetailsCard';
+import { BusinessResultsList } from './components/BusinessResultsList/businessResultsList';
 import { SearchContext } from './context/SearchContext';
 
 function Search() {
@@ -22,7 +22,7 @@ function Search() {
             <Typography>
                 {`You're looking for ${term} in ${city}`}
             </Typography>
-            <BusinessMainDetailsCard />
+            <BusinessResultsList />
         </ThemeProvider>
     );
 }

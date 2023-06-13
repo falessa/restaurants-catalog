@@ -1,9 +1,10 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, useContext, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next'
 import { Box, IconButton } from '@mui/material';
 import { TextInputCustom } from '../TextInputCustom/textInputCustom';
 import Search from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
+import { SearchContext } from '../../context/SearchContext';
 
 interface ISearchInput {
     handleClick?: Function;
@@ -13,9 +14,18 @@ export const SearchInput: FC<ISearchInput> = (props): ReactElement => {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
+    const [term, setTerm] = useState("");
+    const [city, setCity] = useState("");
+
+    const searchContext = useContext(SearchContext);
+
     //destructure props
     const { 
-        handleClick = () => navigate("/search")
+        handleClick = () => {
+            searchContext.setTerm(term);
+            searchContext.setCity(city);
+            navigate("/search")
+        }
      } = props;
 
     const styles = {
@@ -37,8 +47,14 @@ export const SearchInput: FC<ISearchInput> = (props): ReactElement => {
 
     return(
         <Box sx={styles.searchBox}>
-            <TextInputCustom placeholder={t("searchInput.searchTerm") || ""}/>
-            <TextInputCustom placeholder={t("searchInput.city") || ""}/>
+            <TextInputCustom
+                onChange={(e) => setTerm(e.target.value)}
+                placeholder={t("searchInput.searchTerm") || ""}
+            />
+            <TextInputCustom
+                onChange={(e) => setCity(e.target.value)}
+                placeholder={t("searchInput.city") || ""}
+            />
             <IconButton sx={styles.searchIconButton} size="large" onClick={() => handleClick()}>
                 <Search sx={styles.icon} />
             </IconButton>

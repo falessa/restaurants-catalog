@@ -5,9 +5,11 @@ import { BusinessCardPreview } from '../BusinessCardPreview/businessCardPreview'
 import { gql , useQuery } from '@apollo/client';
 import { Business } from '../../generated/graphql';
 
+// TODO: check if this query can be centralized somewhere as I'm using the same one in the BusinessResultsList component
 const GET_BUSINESSES = gql`
     query SearchBusinesses($term: String!, $location: String!) {
         searchBusinesses(term: $term, location: $location) {
+            id
             name
             rating
             photos
@@ -43,8 +45,7 @@ export const BusinessGrid: FC<IBusinessGrid> = (props): ReactElement => {
         titleTypography: {
             display: "flex",
             justifyContent: "center",
-            marginBottom: "80px",
-            // backgroundColor: "green"                
+            marginBottom: "80px"          
         }
     }
 
