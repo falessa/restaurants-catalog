@@ -1,5 +1,6 @@
 import React, { FC, ReactElement, useContext } from 'react';
-import { Box, List, ListItem, Divider } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { Box, List, ListItem, Divider, Typography } from '@mui/material';
 import { gql , useQuery } from '@apollo/client';
 import { Business } from '../../generated/graphql';
 import { BusinessMainDetailsCard } from '../../components/BusinessMainDetailsCard/businessMainDetailsCard';
@@ -36,13 +37,18 @@ interface IBusinessResultsList {
 
 
 export const BusinessResultsList: FC = (): ReactElement => {
+    const { t } = useTranslation();
     const { term, city } = useContext(SearchContext)
 
-
+    const capitalize = (str: string) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    };
+    
     const styles = {
         businessListBox: {
             width: '100%',
-            marginLeft: 2
+            marginLeft: 4,
+            marginTop: 4
         },
         businessListItemBox: { 
             width: '100%',
@@ -52,6 +58,12 @@ export const BusinessResultsList: FC = (): ReactElement => {
             marginTop: 2,
             marginBottom: 2
           },
+        resultsListTitle: {
+            fontWeight: 700,
+            fontSize: 25,
+            fontFamily: "Helvetica Neue",
+            marginBottom: 1
+        },
     }
 
     // run query
@@ -68,21 +80,26 @@ export const BusinessResultsList: FC = (): ReactElement => {
     if (error) return <div>error</div>;
 
     return(
-        <List sx={styles.businessListBox}>
-              
-            {data?.searchBusinesses?.map((business: Business) => (
-                <>
-                    <ListItem alignItems="flex-start" key={business.id}>
-                        <Box sx={styles.businessListItemBox}>
-                            <BusinessMainDetailsCard businessData={business}/>
-                        </Box>
-                    </ListItem>
-                    <Box sx={styles.dividerBox}>
-                        <Divider variant="middle" component="li" />
-                    </Box>
-                </>
-            ))}
+        <Box sx={styles.businessListBox}>
+            <Typography sx={styles.resultsListTitle}>
+                {`${t("businessResultsList.title.looking")} "${capitalize(term)}" ${t("businessResultsList.title.in")} ${capitalize(city)}`}
+            </Typography>
 
-        </List>
+            <List>
+                
+                {data?.searchBusinesses?.map((business: Business) => (
+                    <>
+                        <ListItem alignItems="flex-start" key={business.id}>
+                            <Box sx={styles.businessListItemBox}>
+                                <BusinessMainDetailsCard businessData={business}/>
+                            </Box>
+                        </ListItem>
+                        <Box sx={styles.dividerBox}>
+                            <Divider variant="middle" component="li" />
+                        </Box>
+                    </>
+                ))}
+            </List>
+        </Box>
     )
 }

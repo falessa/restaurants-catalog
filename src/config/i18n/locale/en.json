@@ -11,5 +11,8 @@
     "businessesGrid.title": "Some lovely places in Barcelona",
 
     "businessDetail.open": "Open",
-    "businessDetail.closed": "Closed"
+    "businessDetail.closed": "Closed",
+
+    "businessResultsList.title.looking": "You're looking for",
+    "businessResultsList.title.in": "in"
 }
