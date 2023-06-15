@@ -29,11 +29,6 @@ export const SearchInput: FC<ISearchInput> = (props): ReactElement => {
      } = props;
 
     const styles = {
-        searchBox: {
-            display: 'flex',
-            justifyContent: 'center',
-
-        },
         searchIconButton: {
             backgroundColor: "red",
             borderRadius: "1px",
@@ -45,15 +40,27 @@ export const SearchInput: FC<ISearchInput> = (props): ReactElement => {
         }
     }
 
+    // Update term and city with values from SearchContext if available
+    useEffect(() => {
+        if (searchContext.term) {
+        setTerm(searchContext.term);
+        }
+        if (searchContext.city) {
+        setCity(searchContext.city);
+        }
+    }, [searchContext.term, searchContext.city]);
+
     return(
-        <Box sx={styles.searchBox}>
-            <TextInputCustom
+        <Box>
+            <TextInputCustom data-test="search-term"
                 onChange={(e) => setTerm(e.target.value)}
                 placeholder={t("searchInput.searchTerm") || ""}
+                value={term}
             />
-            <TextInputCustom
+            <TextInputCustom data-test="search-city"
                 onChange={(e) => setCity(e.target.value)}
                 placeholder={t("searchInput.city") || ""}
+                value={city}
             />
             <IconButton sx={styles.searchIconButton} size="large" onClick={() => handleClick()}>
                 <Search sx={styles.icon} />

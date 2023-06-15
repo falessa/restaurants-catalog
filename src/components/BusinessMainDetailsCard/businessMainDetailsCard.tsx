@@ -30,7 +30,6 @@ export const BusinessMainDetailsCard: FC<IBusinessMainDetailsCard> = (props): Re
             fontWeight: 700,
             fontSize: 20,
             fontFamily: "Helvetica Neue",
-            // marginBottom: "0px"
         },
         businessMainDetailsIsOpen: {
             fontWeight: 700,
@@ -98,7 +97,7 @@ export const BusinessMainDetailsCard: FC<IBusinessMainDetailsCard> = (props): Re
                 <Box sx={styles.businessMainDetailsPriceAddressBox}>
                     <Chip size="small" label="$$"/>
                     <Typography sx={styles.businessMainDetailsAddressText}>
-                        {businessData?.location?.address1 + ` ` + businessData?.location?.postal_code}
+                        {businessData?.location?.address1 + `, ` + businessData?.location?.postal_code}
                     </Typography>
                 </Box>
 
