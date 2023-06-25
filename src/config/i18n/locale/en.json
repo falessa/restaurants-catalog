@@ -10,9 +10,11 @@
 
     "businessesGrid.title": "Some lovely places in Barcelona",
 
+    "businessResultsList.title.looking": "You're looking for",
+    "businessResultsList.title.in": "in",
+
     "businessDetail.open": "Open",
     "businessDetail.closed": "Closed",
-
-    "businessResultsList.title.looking": "You're looking for",
-    "businessResultsList.title.in": "in"
+    "businessDetail.reviewSubmittedBy": "Review submitted by",
+    "businessDetail.reviews": "reviews"
 }

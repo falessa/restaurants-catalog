@@ -10,9 +10,11 @@
 
     "businessesGrid.title": "Algunos lugares encantadores en Barcelona",
 
+    "businessResultsList.title.looking": "Estás buscando",
+    "businessResultsList.title.in": "en",
+
     "businessDetail.open": "Abierto",
     "businessDetail.closed": "Cerrado",
-
-    "businessResultsList.title.looking": "Estás buscando",
-    "businessResultsList.title.in": "en"
+    "businessDetail.reviewSubmittedBy": "Reseña escrita por",
+    "businessDetail.reviews": "reseñas"
 }
