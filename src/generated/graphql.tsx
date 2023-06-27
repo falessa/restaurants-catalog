@@ -361,4 +361,6 @@ export type User = {
   image_url?: Maybe<Scalars['String']['output']>;
   /** Name of the user. */
   name?: Maybe<Scalars['String']['output']>;
+  /** URL of the user's profile */
+  profile_url?: Maybe<Scalars['String']['output']>;
 };

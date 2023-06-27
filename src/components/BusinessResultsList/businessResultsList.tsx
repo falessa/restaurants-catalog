@@ -23,6 +23,14 @@ const GET_BUSINESSES = gql`
                 city
             }
             review_count
+            reviews {
+                text
+                url
+                user {
+                    name
+                    profile_url
+                }
+            }
         }
     }
 `;

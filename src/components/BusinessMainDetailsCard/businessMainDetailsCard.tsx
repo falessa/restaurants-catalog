@@ -111,18 +111,23 @@ export const BusinessMainDetailsCard: FC<IBusinessMainDetailsCard> = (props): Re
                     <Box sx={styles.businessMainDetailsReviewBox}>
                         <CommentIcon color="action"/>
                         <Typography sx={styles.businessMainDetailsReviewText}>
-                            This place has really great pizza! Just be prepared to come ready to eat an entire pie on your own or to share with someone. The staff is friendly and this...
+                            {businessData?.reviews?.[0]?.text}
                         </Typography>
                     </Box>
                     <Typography sx={styles.businessMainDetailsReviewer}>
-                            Review submitted by Jessica P.
+                            {t("businessDetail.reviewSubmittedBy") }
+                            <Box sx={{display: "inline-block", marginLeft: "5px"}}>
+                                <a href={businessData?.reviews?.[0]?.user?.profile_url||""} target="_blank">
+                                    {businessData?.reviews?.[0]?.user?.name}
+                                </a>
+                            </Box>
                     </Typography>
                 </Box>
 
                 <Box sx={styles.businessMainDetailsRatingBox}>
                     <Rating name="business-rating" readOnly precision={0.1} value={businessData?.rating} />
                     <Typography sx={styles.businessMainDetailsRatingNumber }>
-                        {businessData?.rating} ({businessData?.review_count || 0} reviews)
+                        {businessData?.rating} ({businessData?.review_count || 0} {t("businessDetail.reviews")})
                     </Typography>
                 </Box>
             </Box>
