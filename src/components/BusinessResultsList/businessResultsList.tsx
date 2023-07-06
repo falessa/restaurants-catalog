@@ -37,12 +37,7 @@ const GET_BUSINESSES = gql`
 
 interface SearchBusinessesData {
     searchBusinesses: Business[];
-  }
-
-interface IBusinessResultsList {
-    searchBusinesses?: Business[]
 }
-
 
 export const BusinessResultsList: FC = (): ReactElement => {
     const { t } = useTranslation();
