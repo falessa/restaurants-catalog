@@ -91,8 +91,8 @@ export const BusinessResultsList: FC = (): ReactElement => {
             <List>
                 
                 {data?.searchBusinesses?.map((business: Business) => (
-                    <>
-                        <ListItem alignItems="flex-start" key={business.id}>
+                    <React.Fragment key={business.id}>
+                        <ListItem alignItems="flex-start">
                             <Box sx={styles.businessListItemBox}>
                                 <BusinessMainDetailsCard businessData={business}/>
                             </Box>
@@ -100,7 +100,7 @@ export const BusinessResultsList: FC = (): ReactElement => {
                         <Box sx={styles.dividerBox}>
                             <Divider variant="middle" component="li" />
                         </Box>
-                    </>
+                    </React.Fragment>
                 ))}
             </List>
         </Box>
