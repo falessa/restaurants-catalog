@@ -6,7 +6,7 @@ import { Business } from '../../generated/graphql';
 import { BusinessMainDetailsCard } from '../../components/BusinessMainDetailsCard/businessMainDetailsCard';
 import { SearchContext } from '../../context/SearchContext';
 
-const GET_BUSINESSES = gql`
+export const GET_BUSINESSES = gql`
     query SearchBusinesses($term: String!, $location: String!) {
         searchBusinesses(term: $term, location: $location) {
             id
