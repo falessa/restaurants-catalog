@@ -29,8 +29,6 @@ test("BusinessMainDetailsCard renders", () => {
     screen.getByText(`${businessData.rating} (${businessData.review_count} businessDetail.reviews)`);
     screen.getByText(`businessDetail.reviewSubmittedBy`);
 
-
-
     const photoElement = screen.getByAltText('business-card-preview');
     expect(photoElement).toBeInTheDocument();
     expect(photoElement.src).toContain('photo1.jpg');
