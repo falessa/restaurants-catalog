@@ -4,6 +4,7 @@ import { Box, List, ListItem, Divider, Typography } from '@mui/material';
 import { gql , useQuery } from '@apollo/client';
 import { Business } from '../../generated/graphql';
 import { BusinessMainDetailsCard } from '../../components/BusinessMainDetailsCard/businessMainDetailsCard';
+import { LoadingSpinner } from '../LoadingSpinner/loadingSpinner';
 import { SearchContext } from '../../context/SearchContext';
 
 export const GET_BUSINESSES = gql`
@@ -67,6 +68,12 @@ export const BusinessResultsList: FC = (): ReactElement => {
             fontFamily: "Helvetica Neue",
             marginBottom: 1
         },
+        loading: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: '50vh'
+          }
     }
 
     // run query
@@ -79,7 +86,10 @@ export const BusinessResultsList: FC = (): ReactElement => {
         }
     );
 
-    if (loading) return <div>Loading</div>;
+    if (loading) {
+        return <LoadingSpinner style={styles.loading}/>
+    }
+
     if (error) return <div>error</div>;
 
     return(
