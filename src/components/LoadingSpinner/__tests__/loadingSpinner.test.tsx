@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect'; // For additional matchers
+import '@testing-library/jest-dom/extend-expect';
 import  { LoadingSpinner } from '../loadingSpinner';
 
 describe('LoadingSpinner', () => {
@@ -15,7 +15,7 @@ describe('LoadingSpinner', () => {
     const { getByRole } = render(<LoadingSpinner style={style} />);
     const circularProgress = getByRole('progressbar');
     console.log(circularProgress.style);
-    // Test if the color style is applied   (regardless of its exact value)
+    // Test if the color style is applied (regardless of its exact value)
     expect(circularProgress.style).toHaveProperty('color', expect.any(String));
   });
 });
