@@ -2,6 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next'
 import { Box, Typography, Grid } from '@mui/material';
 import { BusinessCardPreview } from '../BusinessCardPreview/businessCardPreview';
+import { LoadingSpinner } from '../LoadingSpinner/loadingSpinner';
 import { gql , useQuery } from '@apollo/client';
 import { Business } from '../../generated/graphql';
 
@@ -46,7 +47,13 @@ export const BusinessGrid: FC<IBusinessGrid> = (props): ReactElement => {
             display: "flex",
             justifyContent: "center",
             marginBottom: "80px"          
-        }
+        },
+        loading: {
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginTop: '50px'
+        },
     }
 
     // destructure props
@@ -65,7 +72,9 @@ export const BusinessGrid: FC<IBusinessGrid> = (props): ReactElement => {
         }
     );
 
-    if (loading) return <div>Loading</div>;
+    if (loading) 
+      return <LoadingSpinner style={styles.loading} />
+      
     if (error) return <div>error</div>;
 
     return(
