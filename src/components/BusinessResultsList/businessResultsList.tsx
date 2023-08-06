@@ -90,7 +90,26 @@ export const BusinessResultsList: FC = (): ReactElement => {
         return <LoadingSpinner style={styles.loading}/>
     }
 
-    if (error) return <div>error</div>;
+    if (error) {
+        return (
+            <Box sx={styles.businessListBox}>
+                <Typography sx={styles.resultsListTitle}>
+                    {`${t("error.query")}`}
+                </Typography>
+            </Box>
+        )
+    }
+
+    if (!data?.searchBusinesses || data.searchBusinesses.length === 0) {
+        return (
+            <Box sx={styles.businessListBox}>
+                <Typography sx={styles.resultsListTitle}>
+                    {`${t("businessResultsList.title.noResults")} "${capitalize(term)}" ${t("businessResultsList.title.in")} ${capitalize(city)}`}
+                </Typography>
+            </Box>
+        );
+    }
+
 
     return(
         <Box sx={styles.businessListBox}>

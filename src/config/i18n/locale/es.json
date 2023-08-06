@@ -8,10 +8,13 @@
     "searchInput.searchTerm": "Pizza, hamburguesa, ramen, etc.",
     "searchInput.city": "Ciudad",
 
+    "error.query": "Lo sentimos, ha ocurrido un error. Por favor, intenta más tarde",
+
     "businessesGrid.title": "Algunos lugares encantadores en Barcelona",
 
     "businessResultsList.title.looking": "Estás buscando",
     "businessResultsList.title.in": "en",
+    "businessResultsList.title.noResults": "Ups! No hay resultados para",
 
     "businessDetail.open": "Abierto",
     "businessDetail.closed": "Cerrado",

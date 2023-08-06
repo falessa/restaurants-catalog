@@ -75,7 +75,15 @@ export const BusinessGrid: FC<IBusinessGrid> = (props): ReactElement => {
     if (loading) 
       return <LoadingSpinner style={styles.loading} />
       
-    if (error) return <div>error</div>;
+    if (error) {
+      return (
+        <Box sx={styles.businessGridBox}>
+            <Typography sx={styles.titleTypography} variant="h4" color="black" fontFamily="Helvetica Neue" fontWeight={700}>
+                {`${t("error.query")}`}
+            </Typography>
+        </Box>
+      )
+    }
 
     return(
         <Box sx={styles.businessGridBox}>

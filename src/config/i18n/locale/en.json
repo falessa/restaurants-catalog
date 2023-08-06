@@ -8,10 +8,13 @@
     "searchInput.searchTerm": "Pizza, hamburger, ramen, etc.",
     "searchInput.city": "City",
 
+    "error.query": "We're sorry, an error occurred. Please, try again later",
+
     "businessesGrid.title": "Some lovely places in Barcelona",
 
     "businessResultsList.title.looking": "You're looking for",
     "businessResultsList.title.in": "in",
+    "businessResultsList.title.noResults": "Oops! There are no results for",
 
     "businessDetail.open": "Open",
     "businessDetail.closed": "Closed",
