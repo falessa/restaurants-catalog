@@ -1,6 +1,6 @@
-import React, { FC, ReactElement, useContext } from 'react';
+import React, { FC, ReactElement, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Box, List, ListItem, Divider, Typography } from '@mui/material';
+import { Box, List, ListItem, Divider, Typography, Pagination } from '@mui/material';
 import { gql , useQuery } from '@apollo/client';
 import { Business } from '../../generated/graphql';
 import { BusinessMainDetailsCard } from '../../components/BusinessMainDetailsCard/businessMainDetailsCard';
@@ -8,28 +8,31 @@ import { LoadingSpinner } from '../LoadingSpinner/loadingSpinner';
 import { SearchContext } from '../../context/SearchContext';
 
 export const GET_BUSINESSES = gql`
-    query SearchBusinesses($term: String!, $location: String!) {
-        searchBusinesses(term: $term, location: $location) {
-            id
-            name
-            rating
-            photos
-            hours {
-                is_open_now
-            }
-            location {
-                address1
-                postal_code
-                formatted_address
-                city
-            }
-            review_count
-            reviews {
-                text
-                url
-                user {
-                    name
-                    profile_url
+    query SearchBusinesses($term: String!, $location: String!, $offset: Int, $limit: Int) {
+        searchBusinesses(term: $term, location: $location, offset: $offset, limit: $limit) {
+            total
+            businesses {
+                id
+                name
+                rating
+                photos
+                hours {
+                    is_open_now
+                }
+                location {
+                    address1
+                    postal_code
+                    formatted_address
+                    city
+                }
+                review_count
+                reviews {
+                    text
+                    url
+                    user {
+                        name
+                        profile_url
+                    }
                 }
             }
         }
@@ -37,12 +40,19 @@ export const GET_BUSINESSES = gql`
 `;
 
 interface SearchBusinessesData {
-    searchBusinesses: Business[];
+    searchBusinesses: {
+        businesses: Business[]
+        total: number;
+    };
 }
 
 export const BusinessResultsList: FC = (): ReactElement => {
     const { t } = useTranslation();
     const { term, city } = useContext(SearchContext)
+
+    const [currentPage, setCurrentPage] = useState(1);  // Track the current page
+    const itemsPerPage = 10;  // Define how many businesses per page
+    const offset = (currentPage - 1) * itemsPerPage; // Calculate the offset for GraphQL query based on the current page
 
     const capitalize = (str: string) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
@@ -73,15 +83,22 @@ export const BusinessResultsList: FC = (): ReactElement => {
             justifyContent: 'center',
             alignItems: 'center',
             marginTop: '50vh'
-          }
+        },
+        pagination: {
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: 20
+        }
     }
 
     // run query
-    const { data, loading, error } = useQuery<SearchBusinessesData>(
+    const { data, loading, error, refetch } = useQuery<SearchBusinessesData>(
         GET_BUSINESSES, {
             variables: {
                 term: term,
-                location: city
+                location: city,
+                offset: offset,
+                limit: itemsPerPage
             }
         }
     );
@@ -100,7 +117,7 @@ export const BusinessResultsList: FC = (): ReactElement => {
         )
     }
 
-    if (!data?.searchBusinesses || data.searchBusinesses.length === 0) {
+    if (!data?.searchBusinesses || data.searchBusinesses.total === 0) {
         return (
             <Box sx={styles.businessListBox}>
                 <Typography sx={styles.resultsListTitle}>
@@ -110,6 +127,14 @@ export const BusinessResultsList: FC = (): ReactElement => {
         );
     }
 
+    // Pagination: calculate the total number of pages
+    const totalPages = Math.ceil(data.searchBusinesses.total / itemsPerPage);
+
+    // Pagination: handle page change
+    const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
+        setCurrentPage(page);
+        refetch({ offset: (page - 1) * itemsPerPage });  // Refetch data for the selected page
+    };
 
     return(
         <Box sx={styles.businessListBox}>
@@ -119,7 +144,7 @@ export const BusinessResultsList: FC = (): ReactElement => {
 
             <List>
                 
-                {data?.searchBusinesses?.map((business: Business) => (
+                {data?.searchBusinesses?.businesses.map((business: Business) => (
                     <React.Fragment key={business.id}>
                         <ListItem alignItems="flex-start">
                             <Box sx={styles.businessListItemBox}>
@@ -132,6 +157,15 @@ export const BusinessResultsList: FC = (): ReactElement => {
                     </React.Fragment>
                 ))}
             </List>
+            <Pagination 
+                count={totalPages}
+                page={currentPage}
+                onChange={handlePageChange}
+                shape="rounded"
+                size="large"
+                color="primary"
+                style={styles.pagination}
+            />
         </Box>
     )
 }

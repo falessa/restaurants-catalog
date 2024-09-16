@@ -10,6 +10,8 @@ import { Business } from '../../generated/graphql';
 const GET_BUSINESSES = gql`
     query SearchBusinesses($term: String!, $location: String!) {
         searchBusinesses(term: $term, location: $location) {
+          total
+          businesses {
             id
             name
             rating
@@ -21,6 +23,7 @@ const GET_BUSINESSES = gql`
                 city
             }
             review_count
+          }
         }
     }
 `;
@@ -31,7 +34,10 @@ interface IBusinessGrid {
 }
 
 interface SearchBusinessesData {
-    searchBusinesses: Business[];
+    searchBusinesses: {
+      businesses: Business[]
+      total: number;
+    };
   }
 
 export const BusinessGrid: FC<IBusinessGrid> = (props): ReactElement => {
@@ -92,7 +98,7 @@ export const BusinessGrid: FC<IBusinessGrid> = (props): ReactElement => {
         </Typography>
         <Box sx={{ width: '100%' }}>
           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-            {data?.searchBusinesses.map((business, index) => (
+            {data?.searchBusinesses.businesses.map((business, index) => (
               <Grid item xs={4} key={index}>
                 <BusinessCardPreview businessData={business} />
               </Grid>
