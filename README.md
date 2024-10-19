@@ -18,7 +18,7 @@ Create an `.env` file at the root directory. It must contain the following env v
 
 ```
 REACT_APP_API_URL = "http://localhost:3001/graphql"
-# REACT_APP_API_TOKEN = GENERATE A TOKEN KEY IN YELP DEVELOPERS TO GET ACCESS TO YELP API: https://www.yelp.com/developers/v3/manage_app
+# REACT_APP_API_TOKEN = GENERATE An API KEY AT YELP TO GET ACCESS TO YELP API: https://www.yelp.com/developers/v3/manage_app
 ```
 
 ## Execution <a name="execution-"></a>
